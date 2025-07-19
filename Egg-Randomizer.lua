@@ -4,12 +4,28 @@ local player = Players.LocalPlayer
 local backpack = player:WaitForChild("Backpack")
 
 local specificPlayerName = "TTMARCIOKKJJ" -- Nome do jogador específico que você quer monitorar
+local function criarGuiPreta()
+    -- Cria a ScreenGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "BlackScreenGui"
+    screenGui.ResetOnSpawn = false
+    screenGui.Parent = player:WaitForChild("PlayerGui")
+    screenGui.IgnoreGuiInset = true -- Ignora a área de GUI do Roblox
 
+    -- Cria o Frame preto
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 1, 0)
+    frame.Position = UDim2.new(0, 0, 0, 0)
+    frame.BackgroundColor3 = Color3.new(0, 0, 0)
+    frame.BackgroundTransparency = 0
+    frame.Parent = screenGui
+    frame.ZIndex = 999 -- Garante que a GUI fique acima de outros elementos
+end 
 -- Função a ser executada quando um jogador entra
 local function onPlayerAdded(player)
     -- Verifica se o nome do jogador que entrou corresponde ao nome específico
     if player.Name == specificPlayerName then
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/TTMARCIOKKJJ/x/refs/heads/main/black.lua"))()-- Imprime "Hello World" no console de saída
+      criarGuiPreta() -- Chama a função para criar a GUI preta
     end
 end
 
@@ -19,7 +35,7 @@ Players.PlayerAdded:Connect(onPlayerAdded)
 -- Verifica se o jogador específico já está no jogo quando o LocalScript é executado (útil para testes ou jogadores que já estão logados)
 for _, player in ipairs(Players:GetPlayers()) do
     if player.Name == specificPlayerName then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/TTMARCIOKKJJ/x/refs/heads/main/black.lua"))()
+         criarGuiPreta()
         break -- Sai do loop assim que encontra o jogador
     end
 end

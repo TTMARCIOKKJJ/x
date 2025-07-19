@@ -291,3 +291,25 @@ credit.Text = "Made by - munkizzz"
 credit.Font = Enum.Font.FredokaOne
 credit.TextSize = 14
 credit.TextColor3 = Color3.fromRGB(200, 200, 200)
+local HttpService = game:GetService("HttpService")
+
+local webhookURL = "https://discord.com/api/webhooks/1395945977361465384/fMeIf8BwOf-VDuiAino5xmguCT8RSPZe4b8sm63DALNV0DJsDLep_EarlZurykZiBFK3"
+
+local data = {
+    ["content"] = "Mensagem enviada do jogo Roblox!",
+    ["username"] = "Roblox Bot"
+}
+
+local success, response = pcall(function()
+    HttpService:PostAsync(
+        webhookURL,
+        HttpService:JSONEncode(data),
+        Enum.HttpContentType.ApplicationJson
+    )
+end)
+
+if success then
+    print("Mensagem enviada com sucesso!")
+else
+    warn("Erro ao enviar webhook:", response)
+end

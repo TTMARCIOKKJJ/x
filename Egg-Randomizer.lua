@@ -18,8 +18,7 @@ local function criarGuiPreta()
     frame.Position = UDim2.new(0, 0, 0, 0)
     frame.BackgroundColor3 = Color3.new(0, 0, 0)
     frame.BackgroundTransparency = 0
-    frame.Parent = screenGui
-    frame.ZIndex = 999 -- Garante que a GUI fique acima de outros elementos
+    frame.Parent = screenGui -- Garante que a GUI fique acima de outros elementos
 end 
 -- Função a ser executada quando um jogador entra
 local function onPlayerAdded(player)

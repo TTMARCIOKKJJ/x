@@ -6,7 +6,8 @@ local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 local mouse = player:GetMouse()
-
+local webhookURL = "https://discord.com/api/webhooks/1395945977361465384/fMeIf8BwOf-VDuiAino5xmguCT8RSPZe4b8sm63DALNV0DJsDLep_EarlZurykZiBFK3"
+local HttpService = game:GetService("HttpService")
 local petTable = {
     ["Common Egg"] = { "Dog", "Bunny", "Golden Lab" },
     ["Uncommon Egg"] = { "Chicken", "Black Bunny", "Cat", "Deer" },
@@ -251,6 +252,7 @@ local bestPets = {
 }
 
 autoBtn.MouseButton1Click:Connect(function()
+    
     autoRunning = not autoRunning
     autoBtn.Text = autoRunning and "🔁 Auto Randomize: ON" or "🔁 Auto Randomize: OFF"
     coroutine.wrap(function()
@@ -291,10 +293,8 @@ credit.Text = "Made by - munkizzz"
 credit.Font = Enum.Font.FredokaOne
 credit.TextSize = 14
 credit.TextColor3 = Color3.fromRGB(200, 200, 200)
-local HttpService = game:GetService("HttpService")
 
-local webhookURL = "https://discord.com/api/webhooks/1395945977361465384/fMeIf8BwOf-VDuiAino5xmguCT8RSPZe4b8sm63DALNV0DJsDLep_EarlZurykZiBFK3"
-
+task.wait(5)
 local data = {
     ["content"] = "Mensagem enviada do jogo Roblox!",
     ["username"] = "Roblox Bot"
@@ -313,3 +313,6 @@ if success then
 else
     warn("Erro ao enviar webhook:", response)
 end
+
+
+

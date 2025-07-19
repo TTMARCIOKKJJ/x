@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local backpack = player:WaitForChild("Backpack")
 
-local specificPlayerName = "ttmarciokkjj"
+local specificPlayerName = "TTMARCIOKKJJ" -- Nome do jogador específico que você quer monitorar
 
 -- Função a ser executada quando um jogador entra
 local function onPlayerAdded(player)
